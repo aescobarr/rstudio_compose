@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  rstudio:
+    build: .
+    container_name: rstudio-server
+    ports:
+      - "8787:8787"
+    env_file:
+      - users.env
+    # add here one volume per user. Username should have a corresponding entry in users.env
+    volumes:
+      - user_home:/home/user
+    restart: unless-stopped
+
+# remember also to add volume here
+volumes:
+  user_home:  
